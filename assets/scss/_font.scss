@@ -1,0 +1,125 @@
+@mixin ff($family){
+    font-family: $family, Arial, Sans-Serif;
+}
+
+@mixin font-p2 {
+    @include ff('Inter');
+    font-size: 1.8rem;
+    line-height: 2.2rem;
+    letter-spacing: -0.036rem;
+    font-weight: 300;
+}
+
+@mixin font-p3 {
+    @include ff('Inter');
+    font-size: 1.6rem;
+    line-height: 2rem;
+    letter-spacing: -0.032rem;
+    font-weight: 400;
+}
+
+@mixin font-p4 {
+    @include ff('Inter');
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+    letter-spacing: -0.014rem;
+    font-weight: 400;
+}
+
+@mixin font-p5 {
+    @include ff('Inter');
+    font-size: 1rem;
+    line-height: 1.2rem;
+    letter-spacing: -0.01rem;
+    font-weight: 400;
+}
+
+// --------------------
+
+@mixin font-h1 {
+    @include ff('Inter Tight');
+    font-size: 5.6rem;
+    line-height: 110%;
+    letter-spacing: -0.04rem;
+    font-weight: 600;
+}
+
+@mixin font-h2 {
+    @include ff('Inter Tight');
+    font-size: 4rem;
+    line-height: 4rem;
+    letter-spacing: -0.04rem;
+    font-weight: 600;
+}
+
+@mixin font-h3 {
+    @include ff('Inter Tight');
+    font-size: 2.8rem;
+    line-height: 3.2rem;
+    letter-spacing: 0;
+    font-weight: 600;
+}
+
+@mixin font-h4 {
+    @include ff('Inter Tight');
+    font-size: 2.4rem;
+    line-height: 3.2rem;
+    letter-spacing: 0;
+    font-weight: 500;
+}
+
+@mixin font-h1--mob {
+    @include font-h1;
+    font-size: 3.2rem;
+    line-height: 100%;
+    letter-spacing: -0.032rem;
+}
+
+@mixin font-h2--mob {
+    @include font-h2;
+    font-size: 2.4rem;
+    line-height: 2.8rem;
+    letter-spacing: -0.024rem;
+}
+
+@mixin font-h3--mob {
+    @include font-h3;
+    font-size: 2rem;
+    line-height: 2.4rem;
+    letter-spacing: 0;
+}
+
+// --------------------
+
+@mixin font-c1 {
+    @include ff('Disket Mono');
+    font-size: 2rem;
+    line-height: 2rem;
+    letter-spacing: -0.16rem;
+    font-weight: 400;
+}
+
+@mixin font-c2 {
+    @include ff('Disket Mono');
+    font-size: 1.6rem;
+    line-height: 1.8rem;
+    letter-spacing: -0.128rem;
+    font-weight: 400;
+}
+
+@mixin font-c3 {
+    @include ff('Disket Mono');
+    font-size: 1.3rem;
+    line-height: 1.4rem;
+    letter-spacing: -0.104rem;
+    font-weight: 400;
+}
+
+
+
+
+
+
+
+
+

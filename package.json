@@ -1,0 +1,44 @@
+{
+  "name": "rostools",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@google/model-viewer": "^4.1.0",
+    "@nuxt/eslint": "^0.6.1",
+    "@pinia/nuxt": "^0.5.1",
+    "@popperjs/core": "^2.11.8",
+    "@vitejs/plugin-vue": "^5.0.4",
+    "@vueform/slider": "^2.1.10",
+    "@vueuse/core": "^10.9.0",
+    "@vueuse/nuxt": "^10.9.0",
+    "browser-cookies": "^1.2.0",
+    "fuse.js": "^7.0.0",
+    "maska": "^3.0.0-beta4",
+    "nuxt": "^3.10.3",
+    "nuxt-anime": "^0.1.13",
+    "nuxt-countdown": "^1.1.1",
+    "nuxt-svgo": "^4.2.4",
+    "nuxt-swiper": "^1.2.2",
+    "p5vue": "^0.0.7",
+    "pinia": "^2.1.7",
+    "sass": "^1.71.1",
+    "three": "^0.172.0",
+    "v-calendar": "^3.1.2",
+    "vue": "^3.4.19",
+    "vue-router": "^4.3.0",
+    "vue-slider-component": "^3.2.24",
+    "yandex-metrika-module-nuxt3": "^1.5.3"
+  },
+  "devDependencies": {
+    "dayjs-nuxt": "^2.1.9",
+    "typescript": "5.0.4",
+    "vite-plugin-compression2": "^1.4.0"
+  }
+}

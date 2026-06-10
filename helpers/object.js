@@ -1,0 +1,1 @@
+export const unlink = (obj)=>JSON.parse(JSON.stringify(obj));

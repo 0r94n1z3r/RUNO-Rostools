@@ -1,0 +1,289 @@
+@import url('reset.scss');
+@import url('colors.scss');
+@import url('anim.scss');
+@import url('font.scss');
+
+:root{
+    --scale: 10px;
+    --content-width: 100%;
+
+    font-size: var(--scale);
+
+    @media (max-width: $mobile){
+        --scale: 2.67vw;
+        --content-width: 100vw;
+    }
+
+    --pad-o: 2.4rem;
+    --pad-i: 9.6rem;
+    --pad: calc(var(--pad-o) + var(--pad-i));
+
+    --content-pad: 10rem;
+
+    @include nav-mobile{
+        --pad-o: 2.4rem;
+        --pad-i: 2.4rem;
+        --pad: var(--pad-o);
+    }
+
+    @include mobile{
+        --pad-o: 1.2rem;
+        --pad-i: 2.4rem;
+        --pad: var(--pad-o);
+        --content-pad: 6.4rem;
+    }
+
+    --vh: 1vh;
+    @supports (height: 100dvh){
+        --vh: 1dvh;
+    }
+
+    --100vh: calc(100 * var(--vh));
+}
+
+
+html{
+    width: var(--content-width);
+    overflow-x: hidden;
+    max-width: 100vw;
+    overflow-x: hidden;
+    background-color: var(--c-surface-neutral-main);
+}
+
+body{
+    @include font-p3;
+    background-color: var(--c-surface-neutral-main-inverse);
+
+    color: var(--c-text-default);
+
+    width: var(--content-width);
+}
+
+.fixed-full-element{ //Класс для fixed элементов, которые растянуты на 100% контента (для компенсации вызова модалок)
+    width: var(--content-width)!important;
+}
+
+::-webkit-scrollbar{
+    width: 6px;
+
+    &-track{
+        background: var(--c-white);
+    }
+
+    &-thumb{
+        background-color: var(--c-brand-100);
+        border-radius: 3px;
+    }
+
+    @include nav-mobile{
+        width: 0;
+    }
+}
+
+::selection{
+    background: var(--c-brand-100);
+    color: var(--c-white)!important;
+}
+
+span[nobr]{
+    white-space: nowrap;
+}
+
+//link
+    a.text-link-basic, 
+    .text-link-basic{
+        text-decoration: none;
+        transition: .3s;
+
+        --color: inherit;
+        --color-hov: var(--c-text-accent);
+
+        color: var(--color);
+
+        @include hover{
+            &:hover{
+                color: var(--color-hov);
+            }
+        }
+
+        &:active{
+            transition: .01s;
+            color: var(--c-brand-300);
+        }
+
+        &--rev{
+            --color: var(--c-text-accent);
+            --color-hov: var(--c-brand-88);
+        }
+
+        &--u{
+            position: relative;
+
+            &::after{
+                @include pseudo-absolute;
+                left: 0;
+                bottom: 0;
+                width: 0%;
+                height: .1rem;
+                background-color: var(--color);
+                transition: .3s;
+            }
+
+            @include hover{
+                &:hover{
+                    &::after{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+
+    .seo-link{
+        pointer-events: none;
+        position: absolute;
+        z-index: -9999;
+        opacity: 0;
+    }
+
+//content
+    .content-wrapper{ //Элемент, который оборачивает компоненты компоненты первого уровня
+        padding: 0 var(--pad);
+        width: 100%;
+        max-width: calc(120rem + var(--pad) * 2);
+        margin: 0 auto;
+
+        &-out{
+            padding: 0 var(--pad-o);
+            width: 100%;
+            max-width: calc(120rem + var(--pad) * 2);
+            margin: 0 auto;
+        }
+
+        &-in{
+            padding: 0 var(--pad-i);
+            width: 100%;
+        }
+
+        @include mobile{
+            overflow: hidden;
+        }
+    }
+
+    .content-grid{
+        @include grid(repeat(auto-fill, minmax(30rem, 1fr)), 2rem);
+
+        @include mobile{
+            gap: 2.4rem;
+        }
+    }
+
+    .catalog-grid{
+        @include grid(repeat(auto-fill, minmax(28rem, 1fr)), 2rem);
+
+        @include mobile{
+            gap: 2.4rem;
+        }
+    }
+
+//print
+    @media print{
+        body{
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        body.print{
+            #header,
+            #footer{
+                display: none;
+            }
+        }
+    }
+
+//swiper
+    .swiper-pagination{
+        --swiper-pagination-color: var(--c-surface-accent-main);
+        --swiper-pagination-bullet-inactive-color: var(--c-surface-neutral-high);
+        --swiper-pagination-progressbar-size: .4rem;
+        --swiper-pagination-bullet-size: .8rem;
+        --swiper-pagination-bullet-width: .8rem;
+        --swiper-pagination-bullet-height: .8rem;
+        --swiper-pagination-bullet-inactive-opacity: 1;
+        --swiper-pagination-bullet-horizontal-gap: .4rem;
+        --swiper-pagination-bullet-vertical-gap: .4rem;
+        
+        --swiper-pagination-bottom: 0;
+
+        height: 1rem;
+
+
+        .swiper-pagination-bullet{
+            transition: .3s;
+        }
+
+        .swiper-pagination-bullet-active-prev,
+        .swiper-pagination-bullet-active-prev-prev,
+        .swiper-pagination-bullet-active-next,
+        .swiper-pagination-bullet-active-next-next
+        {
+            transform: scale(1)!important;
+        }
+    }
+
+    .swiper-slide,
+    .swiper-slide>*{
+        -webkit-transform: translate3d(0, 0, 0);
+        -webkit-backface-visibility: hidden;
+        perspective: 1000;
+        -webkit-perspective: 1000;
+    }
+
+    .swiper--faded,
+    .faded-scroll{
+        // uses var(--gap), var(--background)
+
+        position: relative;
+
+        &::before,
+        &::after
+        {
+            @include pseudo-absolute;
+            top: 0;
+            bottom: 0;
+            width: calc(var(--gap) / 2);
+            z-index: 5;
+            background: linear-gradient(90deg, var(--background, var(--c-surface-neutral-main-inverse)) 50%, transparent 100%);
+        }
+
+        &::before{
+            left: 0;
+        }
+
+        &::after{
+            right: 0;
+            transform: scaleX(-1);
+        }
+
+        &--vertical{
+            &::before,
+            &::after{
+                top: unset;
+                bottom: unset;
+                left: 0;
+                right: 0;
+                width: 100%;
+                height: calc(var(--gap) / 2);
+                background: linear-gradient(180deg, var(--c-white) 50%, transparent 100%);
+            }
+
+            &::before{
+                top: 0;
+            }
+
+            &::after{
+                bottom: 0;
+                transform: scaleY(-1);
+            }
+        }
+    }

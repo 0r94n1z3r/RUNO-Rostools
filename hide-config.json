@@ -1,0 +1,5 @@
+{
+    "description": "Конфигурация для MVP - true значения будут скрыты",
+    "delivery": true,
+    "payment": true
+}

@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&display=swap");
+@import url("../fonts/ppneuemontreal/index.css");
+@import url("../fonts/disket-mono/index.css");
+
+.font-p2      {@include font-p2;}
+.font-p3      {@include font-p3;}
+.font-p4      {@include font-p4;} // c3
+.font-p5      {@include font-p5;} // c4
+
+.font-h1, h1, h2  {@include font-h1;}
+.font-h2      {@include font-h2;}
+.font-h3, h3  {@include font-h3;}
+.font-h4, h4  {@include font-h4;}
+.font-h1--mob {@include font-h1--mob;}
+.font-h2--mob {@include font-h2--mob;}
+.font-h3--mob {@include font-h3--mob;}
+
+.font-c1      {@include font-c1;}
+.font-c2      {@include font-c2;}
+.font-c3      {@include font-c3;}
+
+.font{
+    &--m{font-weight: 500;}
+}

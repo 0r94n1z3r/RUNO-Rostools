@@ -1,0 +1,177 @@
+@use "@/assets/scss/_vars" as *;
+@use "sass:map";
+
+@mixin hidden($shift){
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY($shift);
+}
+@mixin hidden-hor($shift){
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX($shift);
+}
+
+@mixin flex-c{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@mixin flex-jtf{
+    display: flex;
+    justify-content: space-between;
+}
+@mixin flex-col{
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin grid($columns, $gap){
+    display: grid;
+    grid-template-columns: $columns;
+    gap: $gap;
+}
+
+@mixin pseudo{
+    content: '';
+    display: block;
+}
+
+@mixin pseudo-absolute{
+    @include pseudo;
+    position: absolute;
+}
+
+@mixin directions($top, $right, $bottom, $left){
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+}
+
+@mixin all-directions($val){
+    @include directions($val, $val, $val, $val);
+}
+
+@mixin background-url($url, $size){
+    background: $url center no-repeat;
+    background-size: $size;
+}
+
+@mixin text-overflow{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@mixin multiple-text-overflow($val){
+    display: -webkit-box;
+    -webkit-line-clamp: $val;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@mixin grab(){
+    cursor: grab;
+    &:active{
+        cursor: grabbing;
+    }
+}
+
+@mixin padding-y($size){
+    padding-top: $size;
+    padding-bottom: $size;
+}
+
+@mixin padding-x($size){
+    padding-left: $size;
+    padding-right: $size;
+}
+
+@mixin margin-y($size){
+    margin-top: $size;
+    margin-bottom: $size;
+}
+
+@mixin margin-x($size){
+    margin-left: $size;
+    margin-right: $size;
+}
+
+@mixin virtual-area($pad){
+    padding: $pad;
+    margin: calc(-1 * $pad);
+}
+
+@mixin hover{
+    @media (hover: hover){
+        @content;
+    }
+}
+
+@mixin mob-display($windowWidth: $mobile){
+    @include mob-display-with-selectors($windowWidth, ".mob-visible", ".desk-visible")
+}
+
+@mixin mob-display-with-selectors($windowWidth, $mob-selector, $desk-selector){
+    @media (min-width: calc($windowWidth + 1px)) {
+        #{$mob-selector}{
+            display: none!important;
+        }
+    }
+
+    @media (max-width: $windowWidth) {
+        #{$desk-selector}{
+            display: none!important;
+        }
+    }
+}
+
+@mixin mobile($breakpoint: $mobile){
+    @media (max-width: $breakpoint){
+        @content;
+    }
+}
+
+@mixin nav-mobile(){
+    @include mobile($navigation-mobile){
+        @content;
+    }
+}
+
+@mixin desktop($breakpoint: $mobile){
+    @media (min-width: calc($breakpoint + 1px)){
+        @content;
+    }
+}
+
+@mixin shadow($type: 'default'){
+    box-shadow: map.get((
+        'default' : 0 .1rem .4rem 0 rgba(103, 106, 115, 0.08),
+        'xs': 0 .2rem .4rem 0 var(--c-black-2),
+    ), $type);
+}
+
+@mixin transition-bounce($all: false){
+    transition: all 0.6s cubic-bezier(0.28, 1.55, 0.57, 1);
+
+    @if($all){
+        *{
+            transition: all 0.6s cubic-bezier(0.28, 1.55, 0.57, 1);
+        }
+    }
+}
+
+@mixin blur-background($border-radius: 1.2rem, $border-width: .1rem){
+    position: relative;
+
+    &::before{
+        border-radius: calc($border-radius - $border-width * 2);
+        @include pseudo-absolute;
+        @include all-directions(0);
+        backdrop-filter: blur(4rem);
+        pointer-events: none;
+        background: rgba(255,255,255,.001);
+    }
+}
